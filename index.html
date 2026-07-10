@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypt · Secure File Encryptor</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+<div class="topbar">
+    <button id="langBtn" class="icon-btn">🌐 中文</button>
+    <button id="themeBtn" class="icon-btn">🌙</button>
+</div>
+
+<div class="container">
+
+    <h1>🔒 <span data-i18n="title">Secure File Encryptor</span></h1>
+    <p class="subtitle" data-i18n="subtitle">Your files never leave your device.</p>
+
+    <div class="card">
+
+        <div id="dropZone" class="drop-zone">
+            <span id="dropText" data-i18n="drop">拖曳檔案到這裡，或點擊選擇</span>
+            <input type="file" id="fileInput" hidden>
+        </div>
+
+        <div class="pw-row">
+            <input type="password" id="password" placeholder="Password" data-i18n-ph="pw">
+            <button id="togglePw" class="mini-btn" title="show/hide">👁</button>
+            <button id="genPw" class="mini-btn" data-i18n="gen">🎲 產生</button>
+        </div>
+
+        <div id="pwStrength" class="pw-strength"></div>
+
+        <div class="buttons">
+            <button id="encryptBtn" data-i18n="encrypt">Encrypt</button>
+            <button id="decryptBtn" data-i18n="decrypt">Decrypt</button>
+        </div>
+
+        <div class="progress-wrap" id="progressWrap">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div id="status"></div>
+
+    </div>
+
+    <!-- ============ 科普說明區（可折疊） ============ -->
+    <div class="info-block">
+        <button id="infoToggle" class="info-header">
+            <span data-i18n="infoTitle">ℹ️ 這個工具如何保護你？</span>
+            <span id="infoArrow" class="arrow">▼</span>
+        </button>
+
+        <div id="infoBody" class="info-body">
+
+            <p class="info-lead" data-i18n="infoLead">
+                你的檔案與密碼永遠不會離開這台裝置。沒有伺服器、沒有上傳、沒有追蹤。
+            </p>
+
+            <h3 data-i18n="howTitle">🔍 它是怎麼運作的？</h3>
+            <p data-i18n="howAes">
+                <b>AES-256-GCM</b> 就像一個超級保險箱，而你的密碼是唯一的鑰匙。
+                GCM 還會加上一道「封條」，只要有人動過內容，打開時就會立刻發現
+                —— 這也是為什麼密碼錯誤或檔案損毀時，解密會直接失敗。
+            </p>
+            <p data-i18n="howPbkdf">
+                <b>PBKDF2</b> 則像是把鑰匙反覆打磨 60 萬次才拿去開鎖。
+                這讓想暴力破解的攻擊者每猜一次都要付出同樣的代價，大幅拖慢破解速度。
+            </p>
+
+            <h3 data-i18n="specTitle">⚙️ 技術規格</h3>
+            <table class="spec-table">
+                <tr><td data-i18n="specAlgo">加密演算法</td><td>AES-256-GCM</td></tr>
+                <tr><td data-i18n="specKdf">金鑰導出</td><td>PBKDF2-HMAC-SHA256</td></tr>
+                <tr><td data-i18n="specIter">迭代次數</td><td>600,000</td></tr>
+                <tr><td>Salt</td><td data-i18n="specSalt">每次隨機 16 bytes</td></tr>
+                <tr><td>IV</td><td data-i18n="specIv">每區塊隨機 12 bytes</td></tr>
+                <tr><td data-i18n="specWhere">運算位置</td><td data-i18n="specWhereV">100% 瀏覽器本機 (Web Crypto API)</td></tr>
+            </table>
+
+            <h3 data-i18n="limitTitle">⚠️ 誠實的限制</h3>
+            <ul class="limit-list">
+                <li data-i18n="limit1">安全性完全取決於你的密碼強度 —— 弱密碼再強的演算法也救不了。</li>
+                <li data-i18n="limit2">密碼一旦遺失，檔案將永遠無法復原（沒有後門、沒有找回機制）。</li>
+                <li data-i18n="limit3">本工具無法防護「裝置本身已被惡意程式入侵」的情境。</li>
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
