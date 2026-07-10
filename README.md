@@ -34,7 +34,7 @@ Demo: https://crypt.info-sec.vip
 無需編譯、無任何相依套件，直接部署靜態檔案即可。
 
 ```bash
-git clone https://github.com/<your-username>/crypt.git
+git clone https://github.com/tntrock/Crypt-Web.git
 cd crypt
 
 open index.html
