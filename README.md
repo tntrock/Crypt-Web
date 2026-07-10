@@ -9,6 +9,7 @@ A zero-server, fully client-side file encryption tool built on the Web Crypto AP
 ![crypto](https://img.shields.io/badge/crypto-Web%20Crypto%20API-orange)
 ![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen)
 
+Demo: https://crypt.info-sec.vip
 </div>
 
 ---
